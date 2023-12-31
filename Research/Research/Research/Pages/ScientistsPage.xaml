@@ -1,0 +1,50 @@
+﻿<Page x:Class="Research.ScientistsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Research"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1400"
+      Title="ScientistsPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="710" Margin="25" x:Name="MainScroll">
+                <ListBox x:Name="resultListBox" Margin="5" SelectionChanged="ResultListBox_SelectionChanged" Background="Transparent">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock>
+                                <Run Text="{Binding FirstName}" FontWeight="Bold" FontFamily="Fixel Text" FontSize="22" Foreground="White"/>
+                                <Run Text="{Binding SecondName}" FontWeight="Bold" FontFamily="Fixel Text" FontSize="22" Foreground="White"/>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Incumbency}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="White"/>
+                                <TextBlock Text="{Binding Awards}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="White"/>
+                                <Separator />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+        </StackPanel>
+        <Grid Visibility="Collapsed" x:Name="ShowScientists" Grid.ColumnSpan="2" Margin="20,15,20,0">
+            <StackPanel Margin="10,10,10,0">
+                <TextBlock Margin="5">
+                <Run Text="{Binding FirstName}" FontWeight="Bold" FontFamily="Fixel Text" FontSize="22" Foreground="White" />
+                <Run Text="{Binding SecondName}" FontWeight="Bold" FontFamily="Fixel Text" FontSize="22" Foreground="White"/>
+                </TextBlock>
+                <TextBlock Text="{Binding Incumbency}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="10,0,10,0" Height="56"/>
+                <TextBlock Text="{Binding Awards}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="20,0,20,10"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="556" Margin="10px">
+                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="18" Foreground="White"/>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

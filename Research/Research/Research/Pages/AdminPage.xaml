@@ -1,0 +1,111 @@
+﻿<Page x:Class="Research.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Research.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="AdminPage">
+    <Page.Resources>
+        <Style x:Key="ImageButtonStyle" TargetType="Image">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.95" Duration="0:0:0.1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.95" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Grid Margin="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Логін :" VerticalAlignment="Center" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="20,0,10,0"/>
+                <TextBox x:Name="usernameTextBox" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a"  Grid.Column="1"/>
+            </Grid>
+            <Grid Margin="30,0,30,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Пароль :" VerticalAlignment="Center" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="20,0,10,0"/>
+                <PasswordBox x:Name="passwordBox" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" Grid.Column="1"/>
+            </Grid>
+            <Grid Margin="30,30,30,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Почта :" VerticalAlignment="Center" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="20,0,10,0"/>
+                <TextBox x:Name="emailTextBox" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a"  Grid.Column="1"/>
+            </Grid>
+
+            <Image Source="/images/AddUser.png" MouseDown="AddUser_Click" Style="{StaticResource ImageButtonStyle}" Height="59" Width="734" Margin="0,10,0,0"/>
+
+            <StackPanel  Grid.ColumnSpan="2">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="492" Margin="25,5,25,25" x:Name="MainScroll">
+                    <ListBox x:Name="resultListBox" Margin="5" SelectionChanged="ResultListBox_SelectionChanged" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Username}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="5"/>
+                                    <TextBlock Text="{Binding Password}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="5"/>
+                                    <TextBlock Text="{Binding Email}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="5"/>
+                                    <TextBlock Margin="5">
+                                        <Run Text="Адміністратор : " FontFamily="Fixel Text" FontSize="20" Foreground="White"/>
+                                        <Run Text="{Binding IsAdmin}" FontFamily="Fixel Text" FontSize="20" Foreground="White"/>
+                                    </TextBlock>
+                                    <Separator />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </StackPanel>
+            <Grid  Visibility="Collapsed" x:Name="ShowResearch" Margin="30,10,30,0">
+                <StackPanel>
+                    <TextBox Text="{Binding Username}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" x:Name="NewUsernameTextBox"/>
+                    <TextBox Text="{Binding Password}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" Margin="0,15,0,15" x:Name="NewPassWordTextBox"/>
+                    <TextBox Text="{Binding Email}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" x:Name="NewEmailTextBox"/>
+                    <TextBlock Margin="0,15,0,15">
+                                        <Run Text="Адміністратор : " FontFamily="Fixel Text" FontSize="20" Foreground="White"/>
+                                        <CheckBox x:Name="isAdminCheckBox" IsChecked="{Binding IsAdmin}" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="0,15,0,0"/>
+                    </TextBlock>
+                    <Separator />
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/UpdateUser.png" MouseDown="ApplyChangesButton_Click" Style="{StaticResource ImageButtonStyle}" Height="59" Width="500" Margin="0,10,0,0"/>
+                        <Image Source="/images/DelUser.png" MouseDown="DeleteButton_Click" Style="{StaticResource ImageButtonStyle}" Height="59" Width="470" Margin="0,10,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

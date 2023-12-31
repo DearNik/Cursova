@@ -1,0 +1,87 @@
+﻿<Window x:Class="Research.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Research"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1400">
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="10" Direction="0" RenderingBias="Quality" ShadowDepth="0"/>
+    </Window.Effect>
+    <Window.BorderBrush>
+        <SolidColorBrush Color="Gray"/>
+    </Window.BorderBrush>
+    <Window.Resources>
+        <Style x:Key="ImageButtonStyle" TargetType="Image">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.95" Duration="0:0:0.1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.95" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="MainContentPanel" Visibility="Collapsed">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/images/menubackgound.png" Stretch="UniformToFill"/>
+                </Grid.Background>
+                <StackPanel  Grid.ColumnSpan="2" >
+                    <Image Source="/images/head.png" VerticalAlignment="Top"/>
+                    <Image Source="/images/ButtonMainPage.png" MouseDown="ShowMainPage" Style="{StaticResource ImageButtonStyle}" Margin="0,40,0,0"/>
+                    <Image Source="/images/ButtonNewPosts.png" MouseDown="ShowNewPapersPage" Style="{StaticResource ImageButtonStyle}" Margin="0,10,0,0"/>
+                    <Image Source="/images/ButtonSearch.png" MouseDown="ShowSearchPage" Style="{StaticResource ImageButtonStyle}" Margin="0,10,0,0"/>
+                    <Image Source="/images/ButtonSinetists.png" MouseDown="ShowScientistsPage" Style="{StaticResource ImageButtonStyle}" Margin="0,10,0,0"/>
+                    <Image Visibility="Collapsed" x:Name="AddNew" Source="/images/ButtonNew.png" MouseDown="ShowAddNewPage" Style="{StaticResource ImageButtonStyle}" Margin="0,10,0,0"/>
+                    <Image Visibility="Collapsed" x:Name="My" Source="/images/ButtonMy.png" MouseDown="ShowMyPage" Style="{StaticResource ImageButtonStyle}" Margin="0,10,0,0"/>
+                    <Image Visibility="Collapsed" x:Name="Admin" Source="/images/ButtonAdmin.png" MouseDown="ShowAdminPage" Style="{StaticResource ImageButtonStyle}" Margin="0,10,0,0"/>
+                </StackPanel>
+                <Image Source="/images/Close.png" MouseDown="Close" Style="{StaticResource ImageButtonStyle}" Margin="9,700,271,17"/>
+                <Image Source="/images/back.png" MouseDown="Back" Style="{StaticResource ImageButtonStyle}" Margin="269,700,9,17"/>
+                <Image Source="/images/profile.png" x:Name="Profile" Visibility="Collapsed" MouseDown="ProfileClick" Style="{StaticResource ImageButtonStyle}" Margin="139,647,139,70"/>
+            </Grid>
+            <Frame Name="MainFrame" Navigated="MainFrame_Navigated" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+            <Grid.Background>
+                <ImageBrush ImageSource="/images/backgound.png" Stretch="UniformToFill"/>
+            </Grid.Background>
+
+        </Grid>
+
+        <Grid x:Name="LoginPanel" Margin="20px" >
+            <Image Source="/images/loginback.png" />
+            <TextBox x:Name="usernameTextBox" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" Margin="517,289,517,406" />
+            <PasswordBox x:Name="passwordBox" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" Margin="517,378,517,317"  />
+            <Image Source="/images/login.png" MouseDown="LoginButton_Click" Style="{StaticResource ImageButtonStyle}" Margin="551,426,551,239" Width="258"/>
+            <Image Source="/images/loginasq.png" MouseDown="LoginGuest_Click" Style="{StaticResource ImageButtonStyle}" Margin="551,488,551,178" Width="258"/>
+        </Grid>
+    </Grid>
+</Window>
+
+    
+    

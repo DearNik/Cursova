@@ -1,0 +1,92 @@
+﻿<Page x:Class="Research.Pages.MyPapersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Research.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="MyPapersPage">
+    <Page.Resources>
+        <Style x:Key="ImageButtonStyle" TargetType="Image">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="0.95" Duration="0:0:0.1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="0.95" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" Duration="0:0:0.1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="1000"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <ScrollViewer  VerticalScrollBarVisibility="Auto" Height="710" Margin="25" x:Name="MainScroll">
+                <ListBox x:Name="resultListBox" Margin="5" SelectionChanged="ResultListBox_SelectionChanged" Background="Transparent">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontFamily="Fixel Text" FontSize="22" Foreground="White" Margin="5"/>
+                                <TextBlock Text="{Binding AuthorName}" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="5"/>
+                                <TextBlock Text="{Binding Abstract}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="5"/>
+                                <TextBlock Text="{Binding DateCreated, StringFormat='Created: {0:dd.MM.yyyy HH:mm}'}" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="5"/>
+                                <TextBlock Text="{Binding DateUpdated, StringFormat='Updated: {0:dd.MM.yyyy HH:mm}'}" FontFamily="Fixel Text" FontSize="20" Foreground="White" Margin="5"/>
+                                <Separator />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+        </StackPanel>
+        <Grid Visibility="Collapsed" x:Name="ShowResearch">
+            <StackPanel Margin="10px">
+                <TextBox Text="{Binding Title}" FontWeight="Bold" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" x:Name="TitleTextBox" Margin="100,10,100,20"/>
+                <TextBlock Margin="40,0,0,0" FontFamily="Fixel Text" FontSize="20" Foreground="White">
+                <Run Text="Автор : " />
+                <Run Text="{Binding AuthorName}"/>
+                </TextBlock>
+                <TextBox Text="{Binding Abstract}" FontWeight="Bold" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" x:Name="AbstractTextBox" Margin="100,20,100,10"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="491" Margin="40,20,40,20" Width="900" >
+                    <TextBox Text="{Binding Content}" TextWrapping="Wrap" FontFamily="Fixel Text" FontSize="20" Foreground="#39393a" x:Name="ContentTextBox"/>
+                </ScrollViewer>
+            </StackPanel>
+            <Grid Margin="25,371,10,-351">
+                <TextBlock Margin="10,314,-10,-314" FontFamily="Fixel Text" FontSize="16" Foreground="White">
+                <Run Text="Дата створення: " FontWeight="Bold"/>
+                <Run Text="{Binding DateCreated, StringFormat={}{0:dd.MM.yyyy HH:mm}}" />
+                </TextBlock>
+                <TextBlock Margin="10,337,10,-327" FontFamily="Fixel Text" FontSize="16" Foreground="White">
+                <Run Text="Дата зміни: " FontWeight="Bold"/>
+                <Run Text="{Binding DateUpdated, StringFormat={} {0:dd.MM.yyyy HH:mm}}"/>
+                </TextBlock>
+            </Grid>
+            <Image Source="/images/UpdatePage.png" MouseDown="ApplyChangesButton_Click" Style="{StaticResource ImageButtonStyle}"  Margin="287,680,287,32"/>
+            <Image Source="/images/DelPage.png" MouseDown="DeleteButton_Click" Style="{StaticResource ImageButtonStyle}"  Margin="570,680,4,32"/>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\AddPapers.png" />
+    <None Remove="Images\AddUser.png" />
+    <None Remove="Images\back.png" />
+    <None Remove="Images\backgound.png" />
+    <None Remove="Images\ButtonAdmin.png" />
+    <None Remove="Images\ButtonMainPage.png" />
+    <None Remove="Images\ButtonMy.png" />
+    <None Remove="Images\ButtonNew.png" />
+    <None Remove="Images\ButtonNewPosts.png" />
+    <None Remove="Images\ButtonSearch.png" />
+    <None Remove="Images\ButtonSinetists.png" />
+    <None Remove="Images\Close.png" />
+    <None Remove="Images\DelPage.png" />
+    <None Remove="Images\delpepers.png" />
+    <None Remove="Images\DelUser.png" />
+    <None Remove="Images\head.png" />
+    <None Remove="Images\login.png" />
+    <None Remove="Images\loginasq.png" />
+    <None Remove="Images\loginback.png" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\menubackgound.png" />
+    <None Remove="Images\profile.png" />
+    <None Remove="Images\UpdatePage.png" />
+    <None Remove="Images\UpdateUser.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\AddPapers.png" />
+    <Resource Include="Images\DelPage.png" />
+    <Resource Include="Images\delpepers.png" />
+    <Resource Include="Images\profile.png" />
+    <Resource Include="Images\UpdatePage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\ScientistsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\SearchPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\AddUser.png" />
+    <Resource Include="Images\back.png" />
+    <Resource Include="Images\backgound.png" />
+    <Resource Include="Images\ButtonAdmin.png" />
+    <Resource Include="Images\ButtonMainPage.png" />
+    <Resource Include="Images\ButtonMy.png" />
+    <Resource Include="Images\ButtonNew.png" />
+    <Resource Include="Images\ButtonNewPosts.png" />
+    <Resource Include="Images\ButtonSearch.png" />
+    <Resource Include="Images\ButtonSinetists.png" />
+    <Resource Include="Images\Close.png" />
+    <Resource Include="Images\DelUser.png" />
+    <Resource Include="Images\head.png" />
+    <Resource Include="Images\login.png" />
+    <Resource Include="Images\loginasq.png" />
+    <Resource Include="Images\loginback.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\menubackgound.png" />
+    <Resource Include="Images\UpdateUser.png" />
+  </ItemGroup>
+
+</Project>
